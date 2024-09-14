@@ -11,5 +11,5 @@
     :bind "127.0.0.1"))
 
 (defn -main [& args]
-  (mount/start server/server)
-  (start-nrepl! 4001))
+  (mount/start #'server/server)
+  (start-nrepl! 8000))

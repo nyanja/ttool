@@ -1,11 +1,19 @@
 {:paths ["src"]
- :deps  {org.clojure/clojure     {:mvn/version "1.11.1"}
-         nrepl/nrepl             {:mvn/version "1.1.1"}
-         com.datomic/peer        {:mvn/version "1.0.7075"}
-         mount/mount             {:mvn/version "0.1.18"}
-         ring/ring-core          {:mvn/version "1.12.1"}
-         ring/ring-jetty-adapter {:mvn/version "1.12.1"}
-         ring/ring-devel         {:mvn/version "1.12.1"}
-         metosin/reitit          {:mvn/version "0.7.0-alpha7"}}
+ :deps  {org.clojure/clojure            {:mvn/version "1.11.1"}
+         nrepl/nrepl                    {:mvn/version "1.1.1"}
+         com.datomic/peer               {:mvn/version "1.0.7075"}
+         mount/mount                    {:mvn/version "0.1.18"}
+         ring/ring-core                 {:mvn/version "1.12.1"}
+         ring/ring-jetty-adapter        {:mvn/version "1.12.1"}
+         metosin/reitit                 {:mvn/version "0.7.0-alpha7"}
+         ch.qos.logback/logback-classic {:mvn/version "1.4.14"}
+         org.clojars.fmnoise/qb         {:mvn/version "0.3.1"}
+         com.walmartlabs/lacinia        {:mvn/version "1.2.2"}
+         cheshire/cheshire              {:mvn/version "5.13.0"}}
 
- :aliases {:run {:main-opts ["-m" "ttool.main"]}}}
+ :aliases {:run {:main-opts ["-m" "ttool.main"]}
+           :dev {:main-opts  ["-m" "ttool.dev"]
+                 :extra-deps {refactor-nrepl/refactor-nrepl {:mvn/version "3.9.1"}
+                              hashp/hashp                   {:mvn/version "0.2.2"}
+                              ring/ring-devel               {:mvn/version "1.12.1"}
+                              cider/cider-nrepl             {:mvn/version "0.47.1"}}}}}

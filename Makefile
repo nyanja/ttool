@@ -1,2 +1,2 @@
 run:
-	clojure -M:run
+	clojure -M:dev

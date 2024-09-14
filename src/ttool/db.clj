@@ -15,7 +15,9 @@
   :start (d/db conn))
 
 
-(defn q [query] (d/q query db))
+(defn q [query & args] (apply d/q query db args))
+
+(defn t [data] (d/transact conn data))
 
 
 

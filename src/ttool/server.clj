@@ -3,16 +3,27 @@
    [mount.core :as mount]
    [ring.adapter.jetty :as j]
    [ring.middleware.reload :as rrel]
-   [ring.middleware.resource :as rres]
-   [ring.middleware.content-type :as rct]
 
-   [ttool.routes :as routes]
-   ))
+   [ttool.routes :as routes]))
 
 (declare server)
 
 
+(defn prod? []
+  (-> (System/getenv)
+      (get "ENV")
+      (= "production")))
+
+
+(def handler
+  (cond-> routes/app
+    (not (prod?)) (rrel/wrap-reload)))
+
+
 (mount/defstate server
-  :start (do
-           (j/run-jetty #'routes/app {:port 4000})
-           (prn "Started a server on a port 4000")))
+  :start (let [server (j/run-jetty handler {:port 4000 :join? false})]
+           (println "Started a server on a port 4000")
+           server)
+
+  :stop (do (prn "Stopping the server")
+            (.stop server)))
